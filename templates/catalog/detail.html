@@ -70,7 +70,6 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
-
                     </div>
                 </div>
 
@@ -86,52 +85,46 @@
                     {% endfor %}
                     <div class="line"></div>
                     <a href="#modal-login" data-lightbox="inline" class="button rounded main-color-bg">Заказать масло</a>
-
                 </div>
 
                 <div class="col_full nobottommargin">
-
-                    <div class="tabs clearfix nobottommargin" id="tab-1">
-                        <ul class="tab-nav clearfix">
-                            <li><a href="#tabs-1"><i class="icon-briefcase-medical"></i><span class="d-none d-md-inline-block">Здоровье</span></a></li>
-                            <li><a href="#tabs-2"><i class="icon-info-sign"></i><span class="d-none d-md-inline-block">Косметология</span></a></li>
-                            <li><a href="#tabs-3"><i class="icon-food2"></i><span class="d-none d-md-inline-block">Кулинария</span></a></li>
-                        </ul>
-
-                        <div class="tab-container">
-
-                            <div class="tab-content clearfix" id="tabs-1">
-                                {% for paragraph in target.health_text.paragraphs.all %}
-                                    {% if paragraph.title %}
-                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                    <div class="swiper-container" style="height: auto">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="height: auto">
+                                <div style="max-height: 30vh;  overflow: hidden" class="mb-4">
+                                    {% if target.cooking_image %}
+                                        <img src="{{ target.cooking_image.url }}" alt="" class="img-fluid mx-auto">
                                     {% endif %}
-                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
-                                {% endfor %}
-
-
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h4>ИСПОЛЬЗОВАНИЕ В ПРИГОТОВЛЕНИИ ПИЩИ</h4>
+                                    {{ target.cooking_description|safe }}
+                                </div>
                             </div>
-                            <div class="tab-content clearfix" id="tabs-2">
-                                {% for paragraph in target.beauty_text.paragraphs.all %}
-                                    {% if paragraph.title %}
-                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                            <div class="swiper-slide" style="height: auto">
+                                <div style="max-height: 30vh;  overflow: hidden" class="mb-4">
+                                    {% if target.health_image %}
+                                        <img src="{{ target.health_image.url }}" alt="" class="img-fluid mx-auto">
                                     {% endif %}
-                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
-                                {% endfor %}
-
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h4>ПОЛЬЗА МАСЛА ДЛЯ ЧЕЛОВЕКА</h4>
+                                    {{ target.cooking_description|safe }}
+                                </div>
                             </div>
-                            <div class="tab-content clearfix" id="tabs-3">
-                                {% for paragraph in target.cooking_text.paragraphs.all %}
-                                    {% if paragraph.title %}
-                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                            <div class="swiper-slide" style="height: auto">
+                                <div style="max-height: 30vh; overflow: hidden" class="mb-4">
+                                    {% if target.cosmetology_image %}
+                                        <img src="{{ target.cosmetology_image.url }}" alt="" class="img-fluid mx-auto">
                                     {% endif %}
-                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
-                                {% endfor %}
-
-							</div>
-
-						</div>
-
-					</div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h4>ИСПОЛЬЗОВАНИЕ В СОВРЕМЕННОЙ КОСМЕТОЛОГИИ</h4>
+                                    {{ target.cosmetology_description|safe }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 					<div class="clear"></div><div class="line"></div>
 
@@ -169,19 +162,23 @@
                                     </div>
                                 </div>
                             {% endfor %}
-
 						</div>
-
 					</div>
-
 				</div>
-
 			</div>
         </div>
     </div>
 {% endblock %}
 
-
 {% block script %}
-
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            autoHeight: true,
+            spaceBetween: 400,
+            loop: true,
+            pagination: false,
+            autoplay: true
+        });
+        console.log(swiper)
+    </script>
 {% endblock %}

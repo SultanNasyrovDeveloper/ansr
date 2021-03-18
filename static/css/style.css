@@ -3081,7 +3081,7 @@ body:not(.stretched) .slider-parallax .slider-parallax-inner { left: auto; }
 	top: 50%;
 	left: 0;
 	margin-top: -26px;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0);
 	width: 52px;
 	height: 52px;
 	border: 0;

@@ -1,3 +1,9 @@
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
 .phone-button-container{
     height: 100%;
     width: 100%;
