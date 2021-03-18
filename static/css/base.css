@@ -1,0 +1,106 @@
+.phone-button-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.h1-text{
+    font-family: 'Custom font 1', sans-serif !important;
+    text-transform: uppercase !important;
+    font-size: 4rem !important;
+    letter-spacing: 0.04rem !important;
+}
+
+.banner-paragraph{
+    font-family: 'Custom font 2', sans-serif !important;
+    text-transform: uppercase !important;
+    font-size: 3rem !important;
+    letter-spacing: 0.03rem !important;
+}
+
+.h2-text{
+    font-family: 'Custom font 3', sans-serif !important;
+    text-transform: uppercase !important;
+    font-size: 2rem !important;
+    letter-spacing: 0.2rem !important;
+
+}
+
+.text-paragraph{
+    font-family: 'Custom font 2', sans-serif !important;
+    text-transform: uppercase !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.06rem !important;
+}
+
+.h3-text{
+    font-family: 'Custom font 2', sans-serif !important;
+    text-transform: uppercase !important;
+    font-size: 1.5rem !important;
+    letter-spacing: 0.06rem !important;
+}
+
+.span-text{
+    font-family: 'Custom font 4', serif !important;
+    text-transform: uppercase !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.04rem !important;
+}
+
+
+.alert-msg-container{
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+
+    z-index: 999;
+
+}
+
+
+.msg-back{
+    width: 20vw;
+    height: 4rem;
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+@media (max-width: 575.98px) {
+    .h1-text{
+        font-family: 'Custom font 1', sans-serif !important;
+        text-transform: uppercase !important;
+        font-size: 2rem !important;
+        letter-spacing: 0.04rem !important;
+    }
+
+    .text-paragraph{
+        font-family: 'Custom font 2', sans-serif !important;
+        text-transform: uppercase !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.06rem !important;
+    }
+
+}

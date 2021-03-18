@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block meta %}
+    <title>{{ page_settings.title }}</title>
+    <meta name="description" content="{{ page_settings.description }}">
+    <meta name="keywords" content="{{ page_settings.keywords }}">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+     <!-- BANNER SLIDER -->
+    <section id="slider" class="slider-element slider-parallax swiper_wrapper full-screen clearfix" data-autoplay="6000">
+        <div class="slider-parallax-inner">
+            <div class="swiper-container swiper-parent">
+                <div class="swiper-wrapper">
+                    {% for banner in banners %}
+                        <div class="swiper-slide dark" style="background-image: url('{{ banner.img.url }}');">
+                            <div class="container clearfix">
+                                <div class="slider-caption slider-caption-center banner-caption">
+                                    <h1 data-animate="fadeInUp" class="h1-text ">{{ page_settings.h1 }}</h1>
+                                    <p  class="d-none d-sm-block banner-paragraph" data-animate="fadeInUp" data-delay="200">
+                                       {{ page_settings.banner_text }}
+                                    </p>
+                                    <a href="#modal-login" data-lightbox="inline" data-animate="fadeInUp" class="button rounded topmargin-sm main-color-bg">Заказать масло</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
+                <div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
+                <div class="slide-number"><div class="slide-number-current"></div><span>/</span><div class="slide-number-total"></div></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="content">
+
+        <div class="content-wrap">
+            <!-- PROMO -->
+            <div class="section promo promo-full promo-border header-stick bottommargin-lg darkgrey">
+                <div class="container clearfix">
+                    <h3 style="text-align: center">Звоните нам по номеру <span class="main-color">{{ site_settings.phone }}</span> или пишите на
+                        <span class="main-color"><a class="main-color" href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></span></h3>
+                    <span style="text-align: center">Наши менеджеры с удовольствием помогут вам подобрать товар и проконсультируют вас по любому вопросу</span>
+                </div>
+            </div>
+
+            <!-- PRODUCT CAROUSEL -->
+            <div class="container-fullwidth clearfix">
+
+                <!-- product carousel -->
+                <div class="col_full">
+                    <div class="heading-block center">
+                        <h2 class="h2-text">{{ page_settings.block_products_title }}</h2>
+                        <span class="text-paragraph">{{ page_settings.block_products_description }}</span>
+                    </div>
+
+                    <div id="oc-products" class="owl-carousel products-carousel carousel-widget" data-margin="20"
+                         data-nav="true" data-pagi="false" data-items-xs="1" data-items-sm="2" data-items-md="3"
+                         data-items-lg="3" data-items-xl="4" data-autoplay="4000" data-loop="true">
+                        {% for product in products %}
+                            <div class="oc-item">
+                                <div class="product iproduct clearfix">
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <div class="product-image">
+                                            <img src="{{ product.img_mini.url }}" alt="Изображение масла">
+
+                                            {% if product.badge %}
+                                                <div class="sale-flash main-color-bg">{{ product.badge }}</div>
+                                            {% endif %}
+                                            <div class="product-image-caption">
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="line nomargin"></div>
+                                    <div class="product-desc center">
+                                        <div class="product-title nomargin">
+                                            <h3 class="h3-text"><a href="{{ product.get_absolute_url }}" class="main-color-hover">{{ product.name }}</a></h3>
+                                        </div>
+                                        <span class="product-category span-text">Растительное масло</span>
+                                        <div class="" style="margin-top: 0.5em">
+                                            <a href="#modal-login" data-lightbox="inline" class="button rounded main-color-bg">Заказать</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="clear"></div>
+                </div><!-- end product carousel -->
+            </div>
+
+            <!-- ABOUT US -->
+            <div class="section parallax parallax-bg dark nomargin notopborder" data-rellax-speed="2"
+                 style="background: url('{{ page_settings.block_aboutus_background.url }}') center center; padding: 100px 0;"
+                 data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -200px;">
+                <div class="container-fluid center clearfix">
+                    <div class="heading-block center">
+                        <h2 class="h2-text">{{ page_settings.block_aboutus_title }}</h2>
+                        <span class="text-paragraph">{{ page_settings.block_aboutus_description }}</span>
+                    </div>
+
+                    <div class="lead rightmargin-lg leftmargin-lg h3-text">
+                        {{ page_settings.block_aboutus_body }}
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SALE -->
+            <div class="container clearfix topmargin-lg">
+
+					<div class="col_three_fifth topmargin-sm bottommargin" style="height: 100%;">
+						<img data-animate="fadeInLeftBig" src="{{ page_settings.block_sale_background.url }}" alt="Imac"
+                        style="width: 100%; height: 100%">
+					</div>
+
+					<div class="col_two_fifth topmargin-sm bottommargin-lg col_last">
+
+						<div class="heading-block">
+							<h2 class="h2-text">{{ page_settings.block_sale_title }}</h2>
+							<span class="text-paragraph">{{ page_settings.block_sale_subtitle }}</span>
+						</div>
+
+						<p class="h3-text">{{ page_settings.block_sale_text }}</p>
+
+						<a href="#modal-login" data-lightbox="inline"
+                           class="button button-border button-rounded button-large noleftmargin topmargin-sm main-color-bg-hover">Купить</a>
+
+					</div>
+                <div class="line"></div>
+            </div>
+
+            <!-- ADVANTAGES -->
+            <section class="section center nomargin modal-padding">
+                <div class="heading-block center topmargin">
+                    <h2 class="h2-text">{{ page_settings.block_advantages_title }}</h2>
+                    <span class="text-paragraph">{{ page_settings.block_advantages_description }}</span>
+                </div>
+
+                <div id="posts" class="post-grid grid-container grid-3 clearfix advantages" data-layout="fitRows">
+                    {% for advantage in advantages %}
+                        <div class="entry clearfix">
+                            <div class="entry-image">
+                                <a href="{{ advantage.icon.url }}" data-lightbox="image">
+                                    <img class="image_fade" src="{{ advantage.icon.url }}" alt="{{ advantage.tagline }}">
+                                </a>
+                            </div>
+                            <div class="entry-title">
+                                <h2 class="h2-text">{{ advantage.tagline }}</h2>
+                            </div>
+                            <div class="entry-content">
+                                <p class="text-paragraph">{{ advantage.text }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+        </div>
+    </section><!-- #content end -->
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

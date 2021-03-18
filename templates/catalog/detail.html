@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block meta %}
+    <title>Купить масло растительное {{ target.name }}</title>
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="container clearfix topmargin-lg">
+        <div class="single-product">
+            <div class="product">
+
+                <div class="col_two_fifth">
+
+                    <!-- Product Single - Gallery
+					============================================= -->
+                    <div class="product-image">
+                        <div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
+                            <div class="flexslider">
+                                <div class="slider-wrap" data-lightbox="gallery">
+                                    <div class="slide" data-thumb="{{ target.img.url }}">
+                                        <a href="{{ target.img.url }}" title="Pink Printed Dress - Front View" data-lightbox="gallery-item">
+                                            <img src="{{ target.img.url }}" alt="Pink Printed Dress">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if target.badge %}
+                            <div class="sale-flash main-color-bg">{{ target.badge }}</div>
+                        {% endif %}
+
+                    </div><!-- Product Single - Gallery End -->
+                </div>
+
+                <div class="col_two_fifth product-desc">
+                    <!-- Product Single - Pice
+							============================================= -->
+                    <header>
+                        <span class="text-paragraph" style="text-align: right;">Масло растительное</span>
+                        <h1 class="h1-text nomargin" style="font-size: 3rem !important;">{{ target.name }}</h1>
+                    </header>
+                    <div class="clearfix nomargin">
+                        <header style="margin-bottom: 1rem;">
+                            <a href="{% if target.ingrs_file %}{{ target.ingrs_file.url }}{% endif %}" download="true"
+                               class="h3-text consist main-color-hover text-black-50" title="Скачать полный состав">Состав:</a>
+                        </header>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Элемент</th>
+                                        <th>Тип</th>
+                                        <th>мг на 100гр</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ingredient in target.ingredients.all %}
+                                        <tr>
+                                            <td>{{ ingredient.name }}</td>
+                                            <td>{{ ingredient.get_type_display }}</td>
+                                            <td>{{ ingredient.amount }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                    </div>
+                </div>
+
+                <div class="col_one_fifth col_last">
+                    {% for advantage in advantages %}
+                        <div class="feature-box fbox-plain fbox-dark fbox-small">
+                            <div class="fbox-icon">
+                                <img src="{{ advantage.icon.url }}" alt="Иконка преимущества товара">
+                            </div>
+                            <h3 style="font-size: 0.7rem;">{{ advantage.title }}</h3>
+                            <p class="notopmargin" style="font-size: 0.6rem;">{{ advantage.text }}</p>
+                        </div>
+                    {% endfor %}
+                    <div class="line"></div>
+                    <a href="#modal-login" data-lightbox="inline" class="button rounded main-color-bg">Заказать масло</a>
+
+                </div>
+
+                <div class="col_full nobottommargin">
+
+                    <div class="tabs clearfix nobottommargin" id="tab-1">
+                        <ul class="tab-nav clearfix">
+                            <li><a href="#tabs-1"><i class="icon-briefcase-medical"></i><span class="d-none d-md-inline-block">Здоровье</span></a></li>
+                            <li><a href="#tabs-2"><i class="icon-info-sign"></i><span class="d-none d-md-inline-block">Косметология</span></a></li>
+                            <li><a href="#tabs-3"><i class="icon-food2"></i><span class="d-none d-md-inline-block">Кулинария</span></a></li>
+                        </ul>
+
+                        <div class="tab-container">
+
+                            <div class="tab-content clearfix" id="tabs-1">
+                                {% for paragraph in target.health_text.paragraphs.all %}
+                                    {% if paragraph.title %}
+                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                                    {% endif %}
+                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
+                                {% endfor %}
+
+
+                            </div>
+                            <div class="tab-content clearfix" id="tabs-2">
+                                {% for paragraph in target.beauty_text.paragraphs.all %}
+                                    {% if paragraph.title %}
+                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                                    {% endif %}
+                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
+                                {% endfor %}
+
+                            </div>
+                            <div class="tab-content clearfix" id="tabs-3">
+                                {% for paragraph in target.cooking_text.paragraphs.all %}
+                                    {% if paragraph.title %}
+                                        <h5 class="h2-text">{{ paragraph.title }}</h5>
+                                    {% endif %}
+                                    <p class="description-paragraph text-paragraph">{{ paragraph.body|safe }}</p>
+                                {% endfor %}
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="clear"></div><div class="line"></div>
+
+					<div class="col_full nobottommargin">
+
+						<h4>Рекомендации</h4>
+
+						<div id="oc-product" class="owl-carousel product-carousel carousel-widget" data-margin="30" data-pagi="false" data-autoplay="5000" data-items-xs="1" data-items-md="2" data-items-lg="3" data-items-xl="4">
+
+                            {% for product in recommendations %}
+                                <div class="oc-item">
+                                    <div class="product iproduct clearfix pointer-event">
+                                        <div class="product-image">
+                                            <a href="{{ product.get_absolute_url }}">
+                                                <img src="{{ product.img_mini.url }}" alt="Изображение масла">
+                                            </a>
+                                            {% if product.badge %}
+                                                <div class="sale-flash main-color-bg">{{ product.badge }}</div>
+                                            {% endif %}
+
+                                            <div class="product-overlay">
+                                            </div>
+                                        </div>
+                                        <div class="product-desc center">
+                                            <span class="product-category span-text">Растительное масло</span>
+                                            <div class="product-title main-color-hover"><h3><a href="{{ product.get_absolute_url }}" class="h3-text main-color-hover">{{ product.name }}</a></h3></div>
+                                            <div class="product-rating" style="float: none; top: 0;">
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                                <i class="icon-star3"></i>
+                                            </div><!-- Product Single - Rating End -->
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

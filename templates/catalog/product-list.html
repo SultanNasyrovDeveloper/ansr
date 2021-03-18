@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+
+    <div class="container clearfix">
+
+        <!-- Shop
+				============================================= -->
+        <div id="shop" class="shop product-1 clearfix">
+            
+            {% for product in products %}
+                <div class="product clearfix">
+                    <div class="product-image">
+                        <a href="#"><img src="{{ product.img.url }}" alt="Checked Short Dress"></a>
+                        <a href="#"><img src="{{ product.img.url }}" alt="Checked Short Dress"></a>
+                        {% if product.badge %}
+                            <div class="sale-flash">product.badge</div>
+                        {% endif %}
+                        <div class="product-overlay">
+                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                            <a href="include/ajax/shop-item.html" class="item-quick-view" data-lightbox="ajax"><i class="icon-zoom-in2"></i><span> Quick View</span></a>
+                        </div>
+                    </div>
+                    <div class="product-desc">
+                        <div class="product-title"><h3><a href="#">Checked Short Dress</a></h3></div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, sit, exercitationem, consequuntur, assumenda iusto eos commodi alias aut ipsum praesentium officia pariatur doloremque dolor tenetur esse vitae voluptatibus inventore delectus. Eaque laboriosam quaerat accusamus! Porro, laboriosam temporibus dolorum doloremque dolorem ex ducimus recusandae repellat neque sapiente ab numquam rerum deleniti!</p>
+                        <ul class="iconlist">
+                            <li><i class="icon-caret-right"></i> Dynamic Color Options</li>
+                            <li><i class="icon-caret-right"></i> Lots of Size Options</li>
+                            <li><i class="icon-caret-right"></i> Delivered in 3-5 Days</li>
+                            <li><i class="icon-caret-right"></i> 30-Day Return Policy</li>
+                        </ul>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div><!-- #shop end -->
+    </div>
+{% endblock %}
