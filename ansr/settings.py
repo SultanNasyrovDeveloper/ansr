@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'ansr.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ansar',
-        'USER': 'ansar_user',
-        'PASSWORD': 'nci4379GUCfbk3y6f',
+        'NAME': 'ansr',
+        'USER': 'developer',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '',
     }
